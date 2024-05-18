@@ -29,15 +29,17 @@ while True:
         options.move(move[0], move[1])
         continue
 
-    if game_state.player1.backpack_capacity > 0:
-        if tuple(game_state.player1.position) == game_state.get_my_home():
-            if game_state.player1.energy < 150 and (game_state.player1.raw_diamonds > 0 or game_state.player1.raw_minerals > 0):
-                options.convert(0,0,game_state.player1.raw_diamonds,game_state.player1.raw_minerals,0,0)
+    player = evaluate.get_player("my", game_state)
+
+    if player.backpack_capacity > 0:
+        if tuple(player.position) == game_state.get_my_home():
+            if player.energy < 150 and (player.raw_diamonds > 0 or player.raw_minerals > 0):
+                options.convert(0,0,player.raw_diamonds,player.raw_minerals,0,0)
             else:
-                options.convert(0,0,0,0,game_state.player1.raw_diamonds,game_state.player1.raw_minerals)
+                options.convert(0,0,0,0,player.raw_diamonds,player.raw_minerals)
             continue
 
-        next_move = search.get_moves(game_state.board, tuple(game_state.player1.position), game_state.get_my_home(), game_state.get_my_home())
+        next_move = search.get_moves(game_state.board, tuple(player.position), game_state.get_my_home(), game_state.get_my_home())
         if next_move is None:
             options.rest()
             continue
@@ -45,7 +47,7 @@ while True:
         options.move(next_move[0], next_move[1])
         pass
     else:
-        neighbours = search.get_neigbour(game_state.player1.position)
+        neighbours = search.get_neigbour(player.position)
         boolean = False
         diamonds = game_state.get_diamonds()
         minerals = game_state.get_minerals()
@@ -63,11 +65,11 @@ while True:
         for mineral in minerals:
                 mineral_neighbours.extend(search.get_neigbour(mineral))
         if len(diamonds) == 0:
-            next_move = search.get_moves_diamond(game_state.board, tuple(game_state.player1.position), mineral_neighbours, game_state.get_my_home())
+            next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
         else:
-            next_move = search.get_moves_diamond(game_state.board, tuple(game_state.player1.position), diamonds_neighbours, game_state.get_my_home())
+            next_move = search.get_moves_diamond(game_state.board, tuple(player.position), diamonds_neighbours, game_state.get_my_home())
         if next_move is None:
-            next_move = search.get_moves_diamond(game_state.board, tuple(game_state.player1.position), mineral_neighbours, game_state.get_my_home())
+            next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
 
         # print(evaluate.move_matrix((0,0), game_state.board))
         # print(next_move)
