@@ -1,4 +1,3 @@
-import json
 from queue import PriorityQueue
 
 def get_legal_moves(board, position):
