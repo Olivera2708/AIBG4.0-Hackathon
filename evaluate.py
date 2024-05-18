@@ -1,21 +1,20 @@
 from collections import deque
-import numpy as np
 
 
 def move_matrix(position, board):
     x_pos, y_pos = position
-    turns = np.full((10, 10), np.inf)
-    queue = deque([(x_pos, y_pos, 0)])
-    turns[x_pos, y_pos] = 0
+    turns = [[float('inf')] * 10 for _ in range(10)]
+    queue = [(x_pos, y_pos, 0)]
+    turns[x_pos][y_pos] = 0
     directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     
     while queue:
-        x, y, turn = queue.popleft()
+        x, y, turn = queue.pop(0)
         for dx, dy in directions:
             nx, ny = x, y
             while 0 <= nx < 10 and 0 <= ny < 10 and board[nx][ny] == 'E':
-                if turns[nx, ny] == np.inf:
-                    turns[nx, ny] = turn + 1
+                if turns[nx][ny] == float('inf'):
+                    turns[nx][ny] = turn + 1
                     queue.append((nx, ny, turn + 1))
                 nx += dx
                 ny += dy
