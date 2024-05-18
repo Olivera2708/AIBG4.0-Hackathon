@@ -71,6 +71,9 @@ while True:
 
         # print(evaluate.move_matrix((0,0), game_state.board))
         # print(next_move)
+        if next_move is None:
+            options.rest()
+            continue
         next_move = next_move[1]
         options.move(next_move[0], next_move[1])
 
