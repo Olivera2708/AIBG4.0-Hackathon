@@ -36,7 +36,7 @@ while True:
             continue
         next_move = next_move[1]
         if player.daze_turns > 0:
-            next_move = (2*next_move[0] - player.position[0], 2*next_move[1] - player.position[1])
+            next_move = (2 * player.position[0] - next_move[0], 2 * player.position[1] - next_move[1])
         options.move(next_move[0], next_move[1])
         pass
     else:
@@ -69,6 +69,6 @@ while True:
             continue
         next_move = next_move[1]
         if player.daze_turns > 0:
-            next_move = (2*next_move[0] - player.position[0], 2*next_move[1] - player.position[1])
+            next_move = (2 * player.position[0] - next_move[0], 2 * player.position[1] - next_move[1])
         options.move(next_move[0], next_move[1])
 
