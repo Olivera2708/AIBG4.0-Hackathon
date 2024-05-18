@@ -22,13 +22,13 @@ class GameState:
     
     def get_my_home(self):
         if self.first_player:
-            return (0, 9)
-        else:
             return (9, 0)
+        else:
+            return (0, 9)
         
     def get_opponent_home(self):
         if self.first_player:
-            return (9, 0)
-        else:
             return (0, 9)
+        else:
+            return (9, 0)
     

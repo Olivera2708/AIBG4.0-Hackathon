@@ -9,7 +9,7 @@ while True:
     # line = sys.stdin.readline().strip()
     line = {
         "turn": 61,
-        "firstPlayerTurn": False,
+        "firstPlayerTurn": True,
         "player1": {
             "name": "Vas bot",
             "energy": 552,
@@ -43,9 +43,9 @@ while True:
         "board": [
             ["E", "E", "E", "E", "E", "E", "D_2_0", "M_6_0", "E", "B"],
             ["E", "D_3_0", "M_6_0", "E", "E", "E", "1", "M_3_0", "E", "E"],
-            ["E", "M_6_0", "E", "E", "2", "E", "E", "M_6_0", "E", "E"],
+            ["E", "M_6_0", "E", "E", "2", "E", "E", "E", "E", "E"],
             ["E", "E", "E", "E", "E", "M_6_0", "E", "M_6_0", "E", "E"],
-            ["E", "E", "E", "E", "E", "E", "M_6_0", "E", "M_6_0", "E"],
+            ["E", "E", "E", "E", "E", "E", "M_6_0", "E", "M_6_0", "M_6_0"],
             ["E", "E", "E", "M_6_0", "E", "E", "E", "E", "E", "E"],
             ["D_3_0", "E", "E", "E", "M_6_0", "E", "E", "E", "E", "E"],
             ["M_6_0", "M_6_0", "M_6_0", "M_6_0", "E", "E", "E", "E", "E", "E"],
