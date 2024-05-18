@@ -57,8 +57,8 @@ while True:
     # data = json.loads(line)
     game_state = GameState.from_json(line)
 
-    print(evaluate.move_matrix((0,0), game_state.board))
-    break
+    # print(evaluate.move_matrix((0,0), game_state.board))
+    # break
 
-    # print("rest", flush=True)
+    print("rest", flush=True)
 

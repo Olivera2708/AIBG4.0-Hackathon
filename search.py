@@ -1,4 +1,3 @@
-import numpy as np
 import json
 from queue import PriorityQueue
 
@@ -75,14 +74,14 @@ def get_moves(board, player_position, goal_position):
                     queue.put((priority, move, path + [move]))
     return None
 
-if __name__ == "__main__":
-    with open("test.json") as file:
-        json_data = json.load(file)
-    # print(json_data["board"][0][0])
-    p = json.dumps(json_data, indent=4)
-    # print(p)
-    # print((1,1)==(1,1))
-    board = json_data["board"]
-    moves = get_moves(board, (0, 8), (8, 3))
-    # moves = get_legal_moves(board, (5, 4))
-    print(moves)
+# if __name__ == "__main__":
+#     with open("test.json") as file:
+#         json_data = json.load(file)
+#     # print(json_data["board"][0][0])
+#     p = json.dumps(json_data, indent=4)
+#     # print(p)
+#     # print((1,1)==(1,1))
+#     board = json_data["board"]
+#     moves = get_moves(board, (0, 8), (8, 3))
+#     # moves = get_legal_moves(board, (5, 4))
+#     print(moves)
