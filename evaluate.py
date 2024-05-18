@@ -90,7 +90,7 @@ def should_attack_house(game_state):
 
         my_moves_to_opponent_home = my_matrix[next_to_home[0]][next_to_home[1]]
 
-        path_to_opponent_home = search.get_moves(game_state.board, tuple(my_player.position), next_to_home)
+        path_to_opponent_home = search.get_moves(game_state.board, tuple(my_player.position), next_to_home, game_state.get_my_home())
         steps_to_opponent_home = search.steps_from_moves(path_to_opponent_home)
         energy_consumption = moves_energy(steps_to_opponent_home, my_player.backpack_capacity)
 
