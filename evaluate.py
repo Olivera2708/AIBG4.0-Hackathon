@@ -3,9 +3,9 @@ import search
 
 def get_next_to_opponent_home(home):
     if home == (0, 9):
-        return (2, 9), (0, 7), (1, 8)
+        return (1, 9), (0, 8)
     else:
-        return (7, 0), (9, 2), (8, 1)
+        return (8, 0), (9, 1)
 
 
 def move_matrix(position, board, player):
@@ -76,23 +76,19 @@ def should_attack_house(game_state):
         opponent_matrix = move_matrix(opponent_player.position, game_state.board, pl_op)
 
         opponent_home = game_state.get_opponent_home();
-        opponent_moves_to_home = opponent_matrix[opponent_home[0]][opponent_home[1]]
+        next_to_home1, next_to_home2 = get_next_to_opponent_home(opponent_home)
 
-        next_to_home1, next_to_home2, next_to_home3 = get_next_to_opponent_home(opponent_home)
-        my_moves_to_opponent_home_1 = my_matrix[next_to_home1[0]][next_to_home1[1]]
-        my_moves_to_opponent_home_2 = my_matrix[next_to_home2[0]][next_to_home2[1]]
-        my_moves_to_opponent_home_3 = my_matrix[next_to_home3[0]][next_to_home3[1]]
+        opponent_moves_to_home_1 = opponent_matrix[next_to_home1[0]][next_to_home1[1]]
+        opponent_moves_to_home_2 = opponent_matrix[next_to_home2[0]][next_to_home2[1]]
 
-        if my_moves_to_opponent_home_1 <= my_moves_to_opponent_home_2 and my_moves_to_opponent_home_1 <= my_moves_to_opponent_home_3:
+        if opponent_moves_to_home_1 < opponent_moves_to_home_2:
             next_to_home = next_to_home1
-            my_moves_to_opponent_home = my_moves_to_opponent_home_1
-        elif my_moves_to_opponent_home_2 <= my_moves_to_opponent_home_1 and my_moves_to_opponent_home_2 <= my_moves_to_opponent_home_3:
-            next_to_home = next_to_home2
-            my_moves_to_opponent_home = my_moves_to_opponent_home_2
+            opponent_moves_to_home = opponent_moves_to_home_1
         else:
-            next_to_home = next_to_home3
-            my_moves_to_opponent_home = my_moves_to_opponent_home_3
+            next_to_home = next_to_home2
+            opponent_moves_to_home = opponent_moves_to_home_2
 
+        my_moves_to_opponent_home = my_matrix[next_to_home[0]][next_to_home[1]]
 
         path_to_opponent_home = search.get_moves(game_state.board, tuple(my_player.position), next_to_home)
         steps_to_opponent_home = search.steps_from_moves(path_to_opponent_home)
