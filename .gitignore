@@ -1,2 +1,4 @@
 pid.log
 __pycache__/
+test.py
+run_simple_type_py.sh

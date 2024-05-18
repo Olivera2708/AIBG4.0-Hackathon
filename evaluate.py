@@ -94,9 +94,9 @@ def should_attack_house(game_state):
         steps_to_opponent_home = search.steps_from_moves(path_to_opponent_home)
         energy_consumption = moves_energy(steps_to_opponent_home, my_player.backpack_capacity)
 
-        if my_moves_to_opponent_home < opponent_moves_to_home and my_player.energy > energy_consumption:
-            return True, path_to_opponent_home[1]
-        else:
-            return False, None
+        if my_player.xp > opponent_player.xp or (my_player.xp == opponent_player.xp and my_player.coins > opponent_player.coins):
+            if my_moves_to_opponent_home < opponent_moves_to_home and my_player.energy > energy_consumption:
+                return True, path_to_opponent_home[1]
+        return False, None
     except:
         return False, None
