@@ -1,0 +1,46 @@
+{
+    "turn": 61,
+    "firstPlayerTurn": false,
+    "player1": {
+      "name": "Vas bot",
+      "energy": 552,
+      "xp": 105,
+      "coins": 125,
+      "position": [1, 6],
+      "increased_backpack_duration": 0,
+      "daze_turns": 0,
+      "frozen_turns": 0,
+      "backpack_capacity": 0,
+      "raw_minerals": 0,
+      "processed_minerals": 0,
+      "raw_diamonds": 0,
+      "processed_diamonds": 0
+    },
+    "player2": {
+      "name": "Topic Team",
+      "energy": 571,
+      "xp": 100,
+      "coins": 125,
+      "position": [2, 4],
+      "increased_backpack_duration": 0,
+      "daze_turns": 0,
+      "frozen_turns": 0,
+      "backpack_capacity": 0,
+      "raw_minerals": 0,
+      "processed_minerals": 0,
+      "raw_diamonds": 0,
+      "processed_diamonds": 0
+    },
+    "board": [
+      ["E",     "E",     "E",     "E",     "E",     "E",     "D_2_0", "M_6_0", "1",     "B"],
+      ["E",     "D_3_0", "M_6_0", "E",     "E",     "E",     "E",     "M_3_0", "E",     "E"],
+      ["E",     "M_6_0", "E",     "E",     "2",     "E",     "E",     "M_6_0", "E",     "E"],
+      ["E",     "E",     "E",     "E",     "E",     "M_6_0", "E",     "M_6_0", "E",     "E"],
+      ["E",     "E",     "E",     "E",     "E",     "E",     "M_6_0", "E",     "M_6_0", "E"],
+      ["E",     "E",     "E",     "M_6_0", "E",     "E",     "E",     "E",     "E",     "E"],
+      ["D_3_0", "E",     "E",     "E",     "M_6_0", "E",     "E",     "E",     "E",     "E"],
+      ["M_6_0", "M_6_0", "M_6_0", "M_6_0", "E",     "E",     "E",     "E",     "E",     "E"],
+      ["E",     "E",     "E",     "E",     "M_6_0", "E",     "E",     "E",     "E",     "E"],
+      ["A",     "E",     "E",     "E",     "E",     "E",     "E",     "E",     "E",     "E"]
+    ]
+  }
