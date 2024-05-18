@@ -32,3 +32,18 @@ class GameState:
         else:
             return (9, 0)
     
+    def get_diamonds(self):
+        diamonds = []
+        for row in range(len(self.board)):
+            for cell in range(len(self.board[row])):
+                if self.board[row][cell][0] == "D"  and self.board[row][cell][2] != "0":
+                    diamonds.append((row, cell))
+        return diamonds
+    
+    def get_minerals(self):
+        minerals = []
+        for row in range(len(self.board)):
+            for cell in range(len(self.board[row])):
+                if self.board[row][cell][0] == "M"  and self.board[row][cell][2] != "0":
+                    minerals.append((row, cell))
+        return minerals
