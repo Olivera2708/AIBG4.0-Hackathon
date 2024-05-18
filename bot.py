@@ -8,19 +8,6 @@ import search
 
 while True:
     line = sys.stdin.readline().strip()
-#     line = {"turn":8,"firstPlayerTurn":True,"player1":{"name": "sss","energy": 981,"xp": 0,"coins": 100,"position": [7, 2],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 2,"raw_minerals": 1,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 991,"xp": 0,"coins": 50,"position": [7, 7],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[
-# ["E", "E", "E", "D_3_0", "M_6_0", "E", "E", "E", "F_2_3", "B"],
-# ["E", "D_3_0", "E", "E", "E", "M_6_0", "M_6_0", "M_6_0", "E", "E"],
-# ["E", "E", "E", "E", "E", "E", "E", "E", "M_6_0", "E"],
-# ["D_3_0", "E", "E", "E", "E", "E", "M_6_0", "E", "M_6_0", "E"],
-# ["M_6_0", "E", "E", "E", "D_3_0", "M_6_0", "E", "E", "M_6_0", "E"],
-# ["E", "M_6_0", "E", "E", "M_6_0", "E", "E", "E", "M_6_0", "E"],
-# ["E", "M_6_0", "E", "M_6_0", "E", "E", "E", "E", "M_6_0", "E"],
-# ["E", "M_6_0", "1", "E", "E", "E", "E", "2", "E", "E"],
-# ["E", "E", "M_5_0", "M_6_0", "M_6_0", "M_6_0", "M_6_0", "E", "E", "E"],
-# ["A", "E", "E", "E", "E", "E", "E", "E", "E", "E"]
-# ]}
-
     data = json.loads(line)
     game_state = GameState.from_json(data)
 
@@ -30,6 +17,10 @@ while True:
         continue
 
     player = evaluate.get_player("my", game_state)
+
+    if tuple(player.position) in evaluate.get_next_to_opponent_home(game_state.get_opponent_home()):
+        options.rest()
+        continue
 
     if player.backpack_capacity > 0:
         if tuple(player.position) == game_state.get_my_home():
