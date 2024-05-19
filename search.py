@@ -2,35 +2,63 @@ from queue import PriorityQueue
 
 def get_legal_moves(board, position, home):
     moves = []
+    dict = {
+        "u": True,
+        "d": True,
+        "l": True,
+        "r": True
+    }
+    i = 1
+    while True:
+        if 10 <= position[0] + i or position[0] + i < 0 or (board[position[0] + i][position[1]] != "E" and board[position[0] + i][position[1]] != board[home[0]][home[1]]):
+            dict["u"] = False
+        if 10 <= position[0] - i or position[0] - i < 0 or (board[position[0] - i][position[1]] != "E" and board[position[0] - i][position[1]] != board[home[0]][home[1]]):
+            dict["d"] = False
+        if 10 <= position[1] + i or position[1] + i < 0 or (board[position[0]][position[1] + i] != 'E' and board[position[0]][position[1] + i] != board[home[0]][home[1]]):
+            dict["l"] = False
+        if 10 <= position[1] - i or position[1] - i < 0 or (board[position[0]][position[1] - i] != 'E' and board[position[0]][position[1] - i] != board[home[0]][home[1]]):
+            dict["r"] = False
 
-    x = position[0] - 1
-    while x >= 0:
-        if board[x][position[1]] == 'E' or board[x][position[1]] == board[home[0]][home[1]]:
-            moves.append((x, position[1]))
-        else: break
-        x -= 1
+        if dict["u"]:
+            moves.append((position[0] + i, position[1]))
+        if dict["d"]:
+            moves.append((position[0] - i, position[1]))
+        if dict["l"]:
+            moves.append((position[0], position[1] + i))
+        if dict["r"]:
+            moves.append((position[0], position[1] - i))
+        i += 1
+        if not dict["u"] and not dict["d"] and not dict["l"] and not dict["r"]:
+            return moves
 
-    x = position[0] + 1
-    while x < 10:
-        if board[x][position[1]] == 'E' or board[x][position[1]] == board[home[0]][home[1]]:
-            moves.append((x, position[1]))
-        else: break
-        x += 1
+    # x = position[0] - 1
+    # while x >= 0:
+    #     if board[x][position[1]] == 'E' or board[x][position[1]] == board[home[0]][home[1]]:
+    #         moves.append((x, position[1]))
+    #     else: break
+    #     x -= 1
 
-    y = position[1] - 1
-    while y >= 0:
-        if board[position[0]][y] == 'E' or board[position[0]][y] == board[home[0]][home[1]]:
-            moves.append((position[0], y))
-        else: break
-        y -= 1
+    # x = position[0] + 1
+    # while x < 10:
+    #     if board[x][position[1]] == 'E' or board[x][position[1]] == board[home[0]][home[1]]:
+    #         moves.append((x, position[1]))
+    #     else: break
+    #     x += 1
+
+    # y = position[1] - 1
+    # while y >= 0:
+    #     if board[position[0]][y] == 'E' or board[position[0]][y] == board[home[0]][home[1]]:
+    #         moves.append((position[0], y))
+    #     else: break
+    #     y -= 1
     
-    y = position[1] + 1
-    while y < 10:
-        if board[position[0]][y] == 'E' or board[position[0]][y] == board[home[0]][home[1]]:
-            moves.append((position[0], y))
-        else: break
-        y += 1
-    return moves
+    # y = position[1] + 1
+    # while y < 10:
+    #     if board[position[0]][y] == 'E' or board[position[0]][y] == board[home[0]][home[1]]:
+    #         moves.append((position[0], y))
+    #     else: break
+    #     y += 1
+    # return moves
 
 def distance(start, end):
     if start[0] == end[0] or start[1] == end[1]:
