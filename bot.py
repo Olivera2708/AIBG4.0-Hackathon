@@ -12,17 +12,19 @@ while True:
     game_state = GameState.from_json(data)
 
     player = evaluate.get_player("my", game_state)
+    special = evaluate.get_between_home(game_state.get_opponent_home())
 
-    should_attack, move = evaluate.should_attack_house(game_state)
-    if should_attack:
-        if player.daze_turns > 0:
-            move = (2 * player.position[0] - move[0], 2 * player.position[1] - move[1])
-        options.move(move[0], move[1])
-        continue
+    if (game_state.board[special[0]][special[1]] == "E"):
+        should_attack, move = evaluate.should_attack_house(game_state)
+        if should_attack:
+            if player.daze_turns > 0:
+                move = (2 * player.position[0] - move[0], 2 * player.position[1] - move[1])
+            options.move(move[0], move[1])
+            continue
 
-    if tuple(player.position) in evaluate.get_next_to_opponent_home(game_state.get_opponent_home()):
-        options.rest()
-        continue
+        if tuple(player.position) in evaluate.get_next_to_opponent_home(game_state.get_opponent_home()):
+            options.rest()
+            continue
 
     if player.backpack_capacity > 0:
         if tuple(player.position) == game_state.get_my_home():

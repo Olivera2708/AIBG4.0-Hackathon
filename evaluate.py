@@ -90,9 +90,6 @@ def should_attack_house(game_state):
         if opponent_moves_to_home_1 < opponent_moves_to_home_2:
             next_to_home = next_to_home1
             opponent_moves_to_home = opponent_moves_to_home_1
-        elif opponent_moves_to_home_1 < opponent_moves_to_home_2:
-            next_to_home = get_between_home(opponent_home)
-            opponent_moves_to_home = opponent_moves_to_home_1
         else:
             next_to_home = next_to_home2
             opponent_moves_to_home = opponent_moves_to_home_2
