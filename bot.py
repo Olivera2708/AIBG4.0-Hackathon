@@ -36,7 +36,7 @@ while True:
         options.rest()
         continue
 
-    if len(search.get_moves(game_state.board, tuple(opponent_player.position), game_state.get_my_home(), game_state.get_my_home())) == 2:
+    if len(search.get_moves(game_state.board, tuple(opponent_player.position), game_state.get_my_home(), game_state.get_my_home())) == 3:
         path = search.get_moves(game_state.board, tuple(player.position), game_state.get_my_home(), game_state.get_my_home())
         options.move(path[1][0], path[1][1])
         continue
