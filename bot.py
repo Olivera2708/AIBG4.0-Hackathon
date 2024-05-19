@@ -28,7 +28,7 @@ while True:
 
 
     next_move = search.get_moves(game_state.board, tuple(player.position), game_state.get_my_home(), game_state.get_my_home())
-    if player.backpack_capacity > 6 or (player.backpack_capacity == 5 and search.get_closest_mineral(game_state, player) < len(next_move)):
+    if player.backpack_capacity > 6 or (player.backpack_capacity == 5 and search.get_closest_mineral(game_state, player) > len(next_move)):
         if tuple(player.position) == game_state.get_my_home():
             if player.energy < 150 and (player.raw_diamonds > 0 or player.raw_minerals > 0):
                 options.convert(0,0,player.raw_diamonds,player.raw_minerals,0,0)
