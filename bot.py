@@ -12,6 +12,7 @@ while True:
     game_state = GameState.from_json(data)
 
     player = evaluate.get_player("my", game_state)
+    opponent_player = evaluate.get_player("op", game_state)
     special = evaluate.get_between_home(game_state.get_opponent_home())
     possible1, possible2 = evaluate.get_next_to_opponent_home(game_state.get_opponent_home())
     between = evaluate.get_between_home(game_state.get_opponent_home())
@@ -20,7 +21,7 @@ while True:
         options.rest()
         continue
 
-    if not evaluate.can_opponent_go_home(game_state):
+    if not evaluate.can_opponent_go_home(game_state) and (player.xp > opponent_player.xp or (player.xp == opponent_player.xp and player.coins > opponent_player.coins)):
         options.rest()
         continue
 
