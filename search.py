@@ -74,6 +74,8 @@ def get_moves(board, player_position, goal_position, home):
     return None
 
 def get_moves_diamond(board, player_position, goal_positions, home):
+    if goal_positions == []:
+        return None
     queue = PriorityQueue()
     queue.put((0, player_position, [player_position]))
     visited = set()
