@@ -36,6 +36,11 @@ while True:
         options.rest()
         continue
 
+    if len(search.get_moves(game_state.board, tuple(opponent_player.position), game_state.get_my_home(), game_state.get_my_home())) == 2:
+        path = search.get_moves(game_state.board, tuple(player.position), game_state.get_my_home(), game_state.get_my_home())
+        options.move(path[1][0], path[1][1])
+        continue
+
     if game_state.board[special[0]][special[1]] == "E":
         should_attack, move = evaluate.should_attack_house(game_state)
         if should_attack:
