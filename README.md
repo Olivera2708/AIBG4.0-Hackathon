@@ -70,3 +70,9 @@ Winners are determined in the following order:
 3. Energy
 4. Number of factories
 5. Backpack weight
+
+## Strategy Overview
+
+Our bot employs a dual-strategy approach:
+- Resource Prioritization: The bot prioritizes collecting the nearest resources, whether minerals or diamonds, to maximize efficiency.
+- Opponent Blocking: When our bot is in the lead, it checks if it can block the opponent's home base to prevent the opponent from gaining more XP.
