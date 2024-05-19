@@ -108,7 +108,7 @@ def should_attack_house(game_state):
 
         if my_player.xp > opponent_player.xp or (my_player.xp == opponent_player.xp and my_player.coins > opponent_player.coins):
             if my_moves_to_opponent_home - 1 <= opponent_moves_to_home and my_player.energy > energy_consumption:
-                return True, path_to_opponent_home[1]
+                return True, path_to_opponent_home[-1]
         return False, None
     except:
         return False, None
