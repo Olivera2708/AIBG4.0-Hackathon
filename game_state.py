@@ -47,3 +47,11 @@ class GameState:
                 if self.board[row][cell][0] == "M"  and self.board[row][cell][2] != "0":
                     minerals.append((row, cell))
         return minerals
+    
+    def diagonal_full(self):
+        if self.first_player and self.board[0][7] != "E" and self.board[2][9] != "E":
+            return True
+        if not self.first_player and self.board[7][0] != "E" and self.board[9][2] != "E":
+            return True
+        return False
+        
