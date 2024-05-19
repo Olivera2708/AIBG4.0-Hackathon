@@ -81,7 +81,7 @@ def should_attack_house(game_state):
         my_matrix = move_matrix(my_player.position, game_state.board, pl_my)
         opponent_matrix = move_matrix(opponent_player.position, game_state.board, pl_op)
 
-        opponent_home = game_state.get_opponent_home();
+        opponent_home = game_state.get_opponent_home()
         next_to_home1, next_to_home2 = get_next_to_opponent_home(opponent_home)
 
         opponent_moves_to_home_1 = opponent_matrix[next_to_home1[0]][next_to_home1[1]]

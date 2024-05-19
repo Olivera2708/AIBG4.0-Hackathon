@@ -26,7 +26,9 @@ while True:
             options.rest()
             continue
 
-    if player.backpack_capacity > 0:
+
+    next_move = search.get_moves(game_state.board, tuple(player.position), game_state.get_my_home(), game_state.get_my_home())
+    if player.backpack_capacity > 6 or (player.backpack_capacity == 5 and search.get_closest_mineral(game_state, player) < len(next_move)):
         if tuple(player.position) == game_state.get_my_home():
             if player.energy < 150 and (player.raw_diamonds > 0 or player.raw_minerals > 0):
                 options.convert(0,0,player.raw_diamonds,player.raw_minerals,0,0)
@@ -34,7 +36,6 @@ while True:
                 options.convert(0,0,0,0,player.raw_diamonds,player.raw_minerals)
             continue
 
-        next_move = search.get_moves(game_state.board, tuple(player.position), game_state.get_my_home(), game_state.get_my_home())
         if next_move is None:
             options.rest()
             continue
@@ -49,7 +50,7 @@ while True:
         diamonds = game_state.get_diamonds()
         minerals = game_state.get_minerals()
         for neighbour in neighbours:
-            if (game_state.board[neighbour[0]][neighbour[1]][0] == "D" or (game_state.board[neighbour[0]][neighbour[1]][0] == "M")) and game_state.board[neighbour[0]][neighbour[1]][2] != "0":
+            if ((game_state.board[neighbour[0]][neighbour[1]][0] == "D" and player.backpack_capacity < 4) or (game_state.board[neighbour[0]][neighbour[1]][0] == "M" and player.backpack_capacity < 7)) and game_state.board[neighbour[0]][neighbour[1]][2] != "0":
                 options.mine(neighbour[0], neighbour[1])
                 boolean = True
                 break
@@ -60,19 +61,40 @@ while True:
         for diamond in diamonds:
             diamonds_neighbours.extend(search.get_neigbour(diamond))
         for mineral in minerals:
-                mineral_neighbours.extend(search.get_neigbour(mineral))
-        if len(diamonds) == 0:
-            next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
-        else:
-            next_move = search.get_moves_diamond(game_state.board, tuple(player.position), diamonds_neighbours, game_state.get_my_home())
-        if next_move is None:
-            next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
+            mineral_neighbours.extend(search.get_neigbour(mineral))
 
-        if next_move is None:
+        next_move_d = search.get_moves_diamond(game_state.board, tuple(player.position), diamonds_neighbours, game_state.get_my_home())
+        next_move_m = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
+
+        if next_move_d != None and next_move_m != None:
+            if len(next_move_d) <= len(next_move_m) and player.backpack_capacity < 4:
+                next_move = next_move_d
+            else:
+                next_move = next_move_m
+        elif next_move_d == None and next_move_m == None:
             options.rest()
             continue
+        elif next_move_d == None:
+            next_move = next_move_m
+        else:
+            next_move = next_move_d
+
+        # if len(diamonds) == 0:
+        #     next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
+        # else:
+        #     if player.backpack_capacity < 4:
+        #         next_move = search.get_moves_diamond(game_state.board, tuple(player.position), diamonds_neighbours, game_state.get_my_home())
+        #     else:
+        #         next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
+        
+        # if next_move is None:
+        #     next_move = search.get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
+
+        # if next_move is None:
+        #     options.rest()
+        #     continue
+        
         next_move = next_move[1]
         if player.daze_turns > 0:
             next_move = (2 * player.position[0] - next_move[0], 2 * player.position[1] - next_move[1])
         options.move(next_move[0], next_move[1])
-

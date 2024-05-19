@@ -99,14 +99,13 @@ def get_neigbour(position):
             result.append(new_position)
     return result
 
-# if __name__ == "__main__":
-#     with open("test.json") as file:
-#         json_data = json.load(file)
-#     # print(json_data["board"][0][0])
-#     p = json.dumps(json_data, indent=4)
-#     # print(p)
-#     # print((1,1)==(1,1))
-#     board = json_data["board"]
-#     # moves = get_moves(board, (0, 8), (8, 3))
-#     moves = get_legal_moves(board, (9, 9), (9, 0))
-#     print(moves)
+
+def get_closest_mineral(game_state, player):
+    minerals = game_state.get_minerals()
+    mineral_neighbours = []
+    for mineral in minerals:
+        mineral_neighbours.extend(get_neigbour(mineral))
+
+    next_move_m = get_moves_diamond(game_state.board, tuple(player.position), mineral_neighbours, game_state.get_my_home())
+    
+    return len(next_move_m) if next_move_m != None else float("inf")
