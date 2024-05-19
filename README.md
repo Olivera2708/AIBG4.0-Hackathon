@@ -70,16 +70,3 @@ Winners are determined in the following order:
 3. Energy
 4. Number of factories
 5. Backpack weight
-
-## AI Bot Development
-
-### Requirements
-1. **Programming Language:** Use any programming language that can interact with the game API.
-2. **Game API:** The game provides an API for interacting with the game environment. Your bot should use this API to make moves, gather resources, and attack or defend.
-3. **Strategy:** Develop a strategy that balances resource gathering, energy management, and tactical actions against opponents.
-4. **Submission:** Submit your AI bot code along with a brief description of your strategy.
-
-### Evaluation
-Your AI bot will be evaluated based on its performance in simulated matches. The bot with the highest score according to the game rules will be declared the winner.
-
-Good luck, and may your AI bot be the ultimate champion in Alien Resource Wars!
