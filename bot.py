@@ -25,6 +25,17 @@ while True:
         options.rest()
         continue
 
+    #dodatak
+    if player.position[0] == opponent_player.position[0] and player.position[0] == game_state.get_opponent_home()[0] and \
+        opponent_player.position[1] < player.positin[1] < game_state.get_opponent_home()[1]:
+        options.rest()
+        continue
+
+    if player.position[1] == opponent_player.position[1] and player.position[1] == game_state.get_opponent_home()[1] and \
+        game_state.get_opponent_home()[0] < player.positin[0] < opponent_player.position[0]:
+        options.rest()
+        continue
+
     if game_state.board[special[0]][special[1]] == "E":
         should_attack, move = evaluate.should_attack_house(game_state)
         if should_attack:
