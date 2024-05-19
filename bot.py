@@ -15,12 +15,16 @@ while True:
     special = evaluate.get_between_home(game_state.get_opponent_home())
     possible1, possible2 = evaluate.get_next_to_opponent_home(game_state.get_opponent_home())
 
+    if player.energy < 50:
+        options.rest()
+        continue
+
     if game_state.board[special[0]][special[1]] == "E":
         if (player.position[0] == possible1[0] and player.position[1] == possible1[1] and game_state.board[possible2[0]][possible2[1]]) or \
             (player.position[0] == possible2[0] and player.position[1] == possible2[1] and game_state.board[possible1[0]][possible1[1]]):
             options.rest()
             continue
-        
+
         should_attack, move = evaluate.should_attack_house(game_state)
         if should_attack:
             if player.daze_turns > 0:
