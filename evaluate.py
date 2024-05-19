@@ -65,6 +65,12 @@ def get_player(player, game_state):
         else:
             return game_state.player1
         
+def can_opponent_go_home(game_state):
+    opponent_player = get_player("opponent", game_state)
+    path_to_opponent_home = search.get_moves(game_state.board, tuple(opponent_player.position), game_state.get_opponent_home(), game_state.get_opponent_home())
+    if path_to_opponent_home == None:
+        return False
+    return True
 
 def should_attack_house(game_state):
     try:

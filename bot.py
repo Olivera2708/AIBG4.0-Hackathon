@@ -16,14 +16,17 @@ while True:
     possible1, possible2 = evaluate.get_next_to_opponent_home(game_state.get_opponent_home())
     between = evaluate.get_between_home(game_state.get_opponent_home())
 
-    if player.energy < 50:
+    if player.energy < 100:
+        options.rest()
+        continue
+
+    if not evaluate.can_opponent_go_home(game_state):
         options.rest()
         continue
 
     if game_state.board[special[0]][special[1]] == "E":
         if (player.position[0] == possible1[0] and player.position[1] == possible1[1] and game_state.board[possible2[0]][possible2[1]]) or \
-            (player.position[0] == possible2[0] and player.position[1] == possible2[1] and game_state.board[possible1[0]][possible1[1]]) or \
-            (player.position[0] == between[0] and player.position[1] == between[1] and game_state.diagonal_full()):
+            (player.position[0] == possible2[0] and player.position[1] == possible2[1] and game_state.board[possible1[0]][possible1[1]]):
             options.rest()
             continue
 
