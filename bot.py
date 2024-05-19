@@ -11,7 +11,6 @@ while True:
     data = json.loads(line)
     game_state = GameState.from_json(data)
 
-
     player = evaluate.get_player("my", game_state)
 
     should_attack, move = evaluate.should_attack_house(game_state)

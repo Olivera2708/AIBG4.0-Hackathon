@@ -6,6 +6,12 @@ def get_next_to_opponent_home(home):
         return (1, 9), (0, 8)
     else:
         return (8, 0), (9, 1)
+    
+def get_between_home(home):
+    if home == (0, 9):
+        return (1, 8)
+    else:
+        return (8, 1)
 
 
 def move_matrix(position, board, player):
@@ -83,6 +89,9 @@ def should_attack_house(game_state):
 
         if opponent_moves_to_home_1 < opponent_moves_to_home_2:
             next_to_home = next_to_home1
+            opponent_moves_to_home = opponent_moves_to_home_1
+        elif opponent_moves_to_home_1 < opponent_moves_to_home_2:
+            next_to_home = get_between_home(opponent_home)
             opponent_moves_to_home = opponent_moves_to_home_1
         else:
             next_to_home = next_to_home2
