@@ -2,7 +2,7 @@
 
 This document outlines our solution for creating a bot that can strategically outmaneuver opponents and achieve victory.
 
-[!Screen image](image.png)
+![Screen image](image.png)
 
 ## Goal
 
