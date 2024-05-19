@@ -11,12 +11,15 @@ while True:
     data = json.loads(line)
     game_state = GameState.from_json(data)
 
-    should_attack, move = evaluate.should_attack_house(game_state)
-    if should_attack:
-        options.move(move[0], move[1])
-        continue
 
     player = evaluate.get_player("my", game_state)
+
+    should_attack, move = evaluate.should_attack_house(game_state)
+    if should_attack:
+        if player.daze_turns > 0:
+            move = (2 * player.position[0] - move[0], 2 * player.position[1] - move[1])
+        options.move(move[0], move[1])
+        continue
 
     if tuple(player.position) in evaluate.get_next_to_opponent_home(game_state.get_opponent_home()):
         options.rest()
